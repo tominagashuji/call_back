@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  template: template0
+
+development:
+  <<: *default
+  database: callback_app_development
+
+test:
+  <<: *default
+  database: callback_app_test
+
+production:
+  <<: *default
+  database: callback_app_production
+  username: callback_app
+  password: <%= ENV['CALLBACK_APP_DATABASE_PASSWORD'] %>
